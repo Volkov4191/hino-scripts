@@ -19,9 +19,6 @@ read mysqlHost
 echo 'Enter mysql user:'
 read mysqlUser
 
-echo 'Enter mysql password:'
-read mysqlPassecho
-
 echo 'Enter mysql dbname:'
 read mysqlDBName
 
@@ -41,7 +38,7 @@ if test -f "$zippedSitePath"; then
     cp "$configSitePath/.settings.php" "$tmpSitePath/bitrix/.settings.php"
     cp "$configSitePath/.htaccess" "$tmpSitePath/.htaccess"
     cp "$configSitePath/.htpasswd" "$tmpSitePath/.htpasswd"
-    zcat "$tmpSitePath/last.sql.gz" | mysql -h"$mysqlHost" -u"$mysqlUser" -p"$mysqlUser" "$mysqlDBName"
+    zcat "$tmpSitePath/last.sql.gz" | mysql -h"$mysqlHost" -u"$mysqlUser" -p "$mysqlDBName"
 
     mv "$sitePath" "${sitePath}_orig"
     mv "$tmpSitePath" "$sitePath"
