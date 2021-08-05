@@ -20,5 +20,6 @@ read mysqlDBName
 mysqldump -u "$mysqlUser" -p "$mysqlDBName" | gzip > $mysqlBackupFilePathTo
 
 pushd $sitePath
-zip -r $fileBackupFilePathTo . -x "*upload/tmp*" "*upload/logs*" "*.git" "*bitrix/cache/*" "*bitrix/managed_cache/*" "*bitrix/backup/*" "*bitrix/tmp/*" "*bitrix/php_interface/dbconn.php" "*bitrix/.settings.php"
+echo 'Zipping...'
+zip -qr $fileBackupFilePathTo . -x "*upload/tmp*" "*upload/logs*" "*.git" "*bitrix/cache/*" "*bitrix/managed_cache/*" "*bitrix/backup/*" "*bitrix/tmp/*" "*bitrix/php_interface/dbconn.php" "*bitrix/.settings.php"
 popd
