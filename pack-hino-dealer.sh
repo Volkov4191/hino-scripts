@@ -10,7 +10,15 @@ fileBackupFilePathTo="$sitePath/htdocs.zip"
 
 rm -rf $mysqlBackupFilePathTo
 rm -rf $fileBackupFilePathTo
-cp $mysqlBackupFilePathFrom $mysqlBackupFilePathTo
+
+echo 'Enter mysql user:'
+read mysqlUser
+
+echo 'Enter mysql dbname:'
+read mysqlDBName
+
+mysqldump -u "$mysqlUser" -p "$mysqlDBName" | gzip > $mysqlBackupFilePathTo
+
 pushd $sitePath
 zip -r $fileBackupFilePathTo . -x "*upload/tmp*" "*upload/logs*" "*.git" "*bitrix/cache/*" "*bitrix/managed_cache/*" "*bitrix/backup/*" "*bitrix/tmp/*" "*bitrix/php_interface/dbconn.php" "*bitrix/.settings.php"
 popd
