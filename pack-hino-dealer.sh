@@ -17,7 +17,7 @@ read mysqlUser
 echo 'Enter mysql dbname:'
 read mysqlDBName
 
-mysqldump -u "$mysqlUser" -p "$mysqlDBName" | gzip > $mysqlBackupFilePathTo
+mysqldump --no-tablespaces -u "$mysqlUser" -p "$mysqlDBName" | gzip > $mysqlBackupFilePathTo
 
 pushd $sitePath
 echo 'Zipping...'
